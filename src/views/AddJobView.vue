@@ -24,13 +24,12 @@
     const addJob = async (e: Event) => {
         const el = e.target;
         e.preventDefault();
-        console.log(job);
         
         try{
             const response = await axios.post('http://localhost:5000/jobs', job);
-            console.log(response.data);
+            const data = response.data;
             toast.success('Job successfully added');
-            router.push('/jobs');
+            router.push(`/jobs/${data.id}`);
         }catch(e){
             toast.error('An error occured while processing');
         }
